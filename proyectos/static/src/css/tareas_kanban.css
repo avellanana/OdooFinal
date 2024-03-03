@@ -1,0 +1,12 @@
+.o_priority_alta {
+    background-color: red !important;
+}
+
+.o_priority_media {
+    background-color: orange !important;
+}
+
+.o_priority_baja {
+    background-color: green !important;
+}
+

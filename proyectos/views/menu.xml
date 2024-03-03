@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Definición de Acción -->
+    <record id="action_proyecto" model="ir.actions.act_window">
+        <field name="name">Proyectos</field>
+        <field name="res_model">proyectos.proyecto</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <record id="action_open_tarea" model="ir.actions.act_window">
+        <field name="name">Tareas</field>
+        <field name="res_model">proyectos.tarea</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <record id="action_open_usuarios" model="ir.actions.act_window">
+        <field name="name">Usuarios</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <record id="action_project_report" model="ir.actions.report">
+        <field name="name">Informe Proyecto</field>
+        <field name="model">proyectos.proyecto</field>
+        <field name="report_name">proyectos.proyecto_report_template</field>
+        <field name="report_type">qweb-pdf</field>
+    </record>
+    
+
+    <!-- Menú Principal (Nivel 1) -->
+    <menuitem id="menu_principal_id" name="Menu Proyectos"/>
+
+    <!-- Submenú (Nivel 2) -->
+    <menuitem id="submenu_proyecto_id" name="Proyectos" parent="menu_principal_id"
+            action="action_proyecto"/>
+    <menuitem id="submenu_tarea_id" name="Tareas" parent="menu_principal_id"
+            action="action_open_tarea"/>
+    <menuitem id="submenu_usuarios_id" name="Usuarios" parent="menu_principal_id"
+            action="action_open_usuarios"/> 
+
+</odoo>

@@ -1,0 +1,22 @@
+<odoo>
+    <record id="proyectos_tarea_kanban_view" model="ir.ui.view">
+        <field name="name">proyectos.tarea.kanban</field>
+        <field name="model">proyectos.tarea</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column o_kanban_project_tasks"  on_create="quick_create" sample="1">
+                <field name="name"/>
+                <field name="priority"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click #{record.priority.raw_value === 'alta' ? 'o_priority_alta' : record.priority.raw_value === 'media' ? 'o_priority_media' : 'o_priority_baja'}">
+                            <div class="oe_kanban_details">
+                                <div><field name="name"/></div>
+                                <div>Priority: <field name="priority"/></div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

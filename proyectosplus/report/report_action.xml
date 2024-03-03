@@ -1,0 +1,77 @@
+<odoo>
+    <data>
+        <!-- Acción de informe para Registro de Tiempo por Tarea -->
+        <report
+            id="action_report_registro"
+            model="proyectos.proyecto"
+            string="Informe de Registro de Tiempo por Proyecto"
+            report_type="qweb-pdf"
+            name="proyectosplus.report_tiempo_template"
+            file="proyectosplus/report_tiempo_template"
+        />
+
+        <!-- Plantilla QWeb para el informe de Registro de Tiempo por Proyecto -->
+        <template id="report_tiempo_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-foreach="docs" t-as="proyecto">
+                            <h1>Informe de Registro de Tiempo por Proyecto: <span
+                                    t-esc="proyecto.name" /></h1>
+                            <p>
+                                <strong>Descripción del Proyecto:</strong>
+                                <span t-esc="proyecto.description" />
+                            </p>
+                            <p>
+                                <strong>Estado:</strong>
+                                <span t-esc="proyecto.state" />
+                            </p>
+                            <p>
+                                <strong>Fecha de Inicio:</strong>
+                                <span t-esc="proyecto.start_date" />
+                            </p>
+                            <p>
+                                <strong>Fecha de Fin:</strong>
+                                <span t-esc="proyecto.end_date" />
+                            </p>
+                            <h2>Tareas</h2>
+                            <t t-foreach="proyecto.task_ids" t-as="tarea">
+                                <div style="padding-left:20px;">
+                                    <h3>Tarea: <span t-esc="tarea.name" /></h3>
+                                    <p>
+                                        <strong>Descripción:</strong>
+                                        <span t-esc="tarea.description" />
+                                    </p>
+                                    <p>
+                                        <strong>Estado:</strong>
+                                        <span t-esc="tarea.state" />
+                                    </p>
+                                    <p>
+                                        <strong>Fecha de Inicio:</strong>
+                                        <span t-esc="tarea.start_date" />
+                                    </p>
+                                    <p>
+                                        <strong>Fecha de Vencimiento:</strong>
+                                        <span t-esc="tarea.due_date" />
+                                    </p>
+                                    <h4>Registros de Tiempo</h4>
+                                    <t t-foreach="tarea.registro_tiempo_ids" t-as="registro">
+                                        <div style="padding-left:40px;">
+                                            <p>Fecha: <span t-esc="registro.date" /> - Usuario: <span
+                                                    t-esc="registro.user_id.name" /> - Horas: <span
+                                                    t-esc="registro.hours" /></p>
+                                            <p>
+                                                <strong>Descripción:</strong>
+                                                <span t-esc="registro.description" />
+                                            </p>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

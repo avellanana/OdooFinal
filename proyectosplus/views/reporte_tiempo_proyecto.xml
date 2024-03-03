@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <!-- Heredar la vista de formulario del proyecto para añadir un botón en el encabezado -->
+        <record id="proyecto_form_inherit_report_button" model="ir.ui.view">
+            <field name="name">proyectos.proyecto.form.inherit.report.button</field>
+            <field name="model">proyectos.proyecto</field>
+            <field name="inherit_id" ref="proyectos.view_proyecto_form"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button name="%(proyectosplus.action_report_registro)d" type="action" string="Informe de Registro de Tiempo por Proyecto" class="oe_highlight"/>
+                </header>
+            </field>
+        </record>
+    </data>
+</odoo>
